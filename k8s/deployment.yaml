@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: test
+  name: elasticsearch-curator
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        module: elasticsearch-curator
+    spec:
+      containers:
+      - name: elasticsearch-curator
+        image: 127.0.0.1:32001/es-curator:072bcf13
+        env:
+        - name: CRON_DESC
+          value: "0 * * * * *"

@@ -1,0 +1,23 @@
+actions:
+  1:
+    action: delete_indices
+    description: "Delete indices older than 3 days"
+    options: 
+      disable_action: False
+      ignore_empty_list: True
+    filters:
+      - filtertype: kibana
+        exclude: True
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '%Y.%m.%d'
+        unit: days
+        unit_count: 3
+        exclude:
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '%Y-%m-%d'
+        unit: days
+        unit_count: 3
